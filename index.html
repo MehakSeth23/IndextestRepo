@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interchange Adjacent Array elements</title>
+    <script src="randomarray.js"></script>
+</head>
+
+<body>
+    <button onclick="callRandom(9,1,100)">Generate random array</button>
+    <button onclick="logicalFunc()">Interchange</button>
+    <p id="arr"></p>
+    <p id="display"></p>
+
+    <script>
+        let randomArray = [];
+        function callRandom(length, min, max) {
+            randomArray = generateRandomArray(length, min, max);
+            document.getElementById('arr').innerHTML = "[" + randomArray + "]"
+            document.getElementById('display').innerHTML = ''
+        }
+
+        function logicalFunc() {
+            let arr = randomArray;
+            if (arr == '') {
+                document.getElementById('display').innerHTML = 'generate random array first'
+            } else {
+                var len = arr.length
+                console.log(len)
+                for (j = 0; j < len; j += 2) {
+                    let min = arr[j];
+                    let max = arr[j];
+                    min_index = j
+                    max_index = j
+                    for (let i = j + 1; i < len; i++) {
+                        if (arr[i] < min) {
+                            min = arr[i];
+                            min_index = i
+                        }
+                        if (arr[i] > max) {
+                            max = arr[i];
+                            max_index = i
+                        }
+
+                    }
+                    console.log(j);
+                    temp1 = arr[j]
+                    arr[j] = arr[min_index]
+                    arr[min_index] = temp1
+
+                    if (j + 1 < len) {
+                        temp2 = arr[j + 1]
+                        arr[j + 1] = arr[max_index]
+                        arr[max_index] = temp2
+                    }
+
+
+                }
+            }
+            document.getElementById('display').innerHTML = arr;
+        }
+    </script>
+</body>
+
+</html>
